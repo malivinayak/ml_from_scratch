@@ -15,9 +15,11 @@ optimizer = torch.optim.SGD(model.parameters(), lr=0.1)
 print("before:", model.weight.item(), model.bias.item())
 
 # Part C : Training Loop
+losses = []
 for epoch in range(1,201):
     pred = model(x)                # 1. forward
     loss = loss_fn(pred, y)        # 2. loss
+    losses.append(loss.item())  
     optimizer.zero_grad()          # 3. clear old gradients
     loss.backward()                # 4. compute gradients
     optimizer.step()               # 5. update parameters
