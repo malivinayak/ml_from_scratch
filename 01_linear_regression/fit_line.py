@@ -28,5 +28,14 @@ for epoch in range(1,201):
         print(f"{epoch:3d} | loss {loss.item():.5f} | "
               f"w {model.weight.item():.4f} | b {model.bias.item():.4f}")
 
-
 print("after:", model.weight.item(), model.bias.item())
+
+# Part D : Prediction
+model.eval()
+
+with torch.no_grad():
+    x_new = torch.tensor([[0.0], [0.5], [2.0]]) # shape (3, 1)
+    y_new = model(x_new)
+
+for xi, yi in zip(x_new, y_new):
+    print(f"x = {xi.item():5.2f} -> predicted {yi.item():.3f} | true {2 * xi.item() + 1:.3f}")
