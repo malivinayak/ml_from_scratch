@@ -1,6 +1,7 @@
 import torch
 from torch import nn
 import matplotlib.pyplot as plt
+from pathlib import Path
 
 torch.manual_seed(42)
 
@@ -64,4 +65,7 @@ ax2.set_ylabel("MSE loss")
 ax2.set_title("Training loss")
 
 plt.tight_layout()
-plt.show()
+out_path = Path(__file__).with_suffix(".png")    # .../01_linear_regression/fit_line.png
+plt.savefig(out_path, dpi=150)
+plt.close(fig)
+print("saved plot to", out_path)
