@@ -7,5 +7,9 @@ torch.manual_seed(42)
 x = torch.linspace(-1, 1, 100).unsqueeze(1) # shape (100, 1)
 y = 2 * x + 1 + 0.1 * torch.rand_like(x)    # shape (100, 1)
 
-print(x[:10])
-print(y[:10])
+# Part B : Model, Loss, Optimizer
+model = nn.Linear(1, 1)
+loss_fn = nn.MSELoss()
+optimizer = torch.optim.SGD(model.parameters(), lr=0.1)
+
+print("before:", model.weight.item(), model.bias.item())
